@@ -1,14 +1,3 @@
-import pandas as pd
-
-# data = {"Level": [1, 2, 2, 3],
-#         "Name": ["Seat", "PP (polypropyleen)", "Screws", "Stainless steel"],
-#         "Quantity": [1, 2.4, 4, 0.1],
-#         "Unit": ["Items", "kg", "Items", "kg"]}
-# bom = pd.DataFrame(data=data)
-# levels = bom["Level"].values
-# quantity = bom["Quantity"].values
-
-
 # Check if level 0 (product) is missing
 def zero_level_missing(levels):
     if 0 in levels:
@@ -85,6 +74,8 @@ def test_valid_quantity(bom):
     assert valid_quantity(row)
 
 
-test_validate_levels()
-test_zero_level_missing()
-test_match_level_indices()
+# Execute all unit tests
+def execute_unit_tests():
+    test_validate_levels()
+    test_zero_level_missing()
+    test_match_level_indices()

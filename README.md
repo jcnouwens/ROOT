@@ -19,3 +19,8 @@
 3. Check for the right level sequence. Number X can only be followed by [number X], [number X + 1] or [Number X - 1, Number X-2, Number X-3 etc] Number X can never be followed by [Number X + >1]  Good → 0, 1, 2, 2, 3, 3, 1, 2, 1, 2, 3, 4, 4, 5, 5, 1. Wrong → 0, 1, 2, 2, 1, 3
 4. Only match the following values within the BOM: match [Number X] if the previous [number] is the same or higher. Don’t match [Number X] If the previous number is lower. Example: match all the bold numbers → 0, 1, 2, 2, 3, 3, 1, 2, 1, 2, 3, 4, 4, 5, 5, 1.
 5. Check the quantity for digits, no letters
+
+data = {"Level": [1, 2, 2, 3],
+        "Name": ["Seat", "PP (polypropyleen)", "Screws", "Stainless steel"],
+        "Quantity": [1, 2.4, 4, 0.1],
+        "Unit": ["Items", "kg", "Items", "kg"]}

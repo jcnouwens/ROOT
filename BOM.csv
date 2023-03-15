@@ -1,4 +1,5 @@
-Level, Name, Quantity
-1, Seat, 1
-2, PP (polypropyleen), 2.4
-2, Screws, 4
+Level,name,Quantity
+1,Seat,1,Items
+2,PP (polypropyleen),2.4,kg
+2,Screws,4,Items
+3,Stainless steel,0.1,kg
