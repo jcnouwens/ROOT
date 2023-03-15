@@ -2,7 +2,8 @@ import pandas as pd
 
 data = {"Level": [1, 2, 2, 3],
         "Name": ["Seat", "PP (polypropyleen)", "Screws", "Stainless steel"],
-        "Quantity": [1, 2.4, 4, 0.1]}
+        "Quantity": [1, 2.4, 4, 0.1],
+        "Unit": ["Items", "kg", "Items", "kg"]}
 bom = pd.DataFrame(data=data)
 levels = bom["Level"].values
 quantity = bom["Quantity"].values
@@ -40,7 +41,7 @@ def match_level_indices(levels):
     return match_indices
 
 
-# Filter only the levels that ius greater or equal to the previous level
+# Check if quantity has valid data type
 def valid_quantity(row):
     if isinstance(row.Quantity, int):
         return True
@@ -49,6 +50,13 @@ def valid_quantity(row):
     else:
         return False
 
+
+# Check if unit has valid value
+def valid_unit(row):
+    if row.Unit in ['Kg', 'Items', 'm2']:
+        return True
+    else:
+        return False
 
 # -- UNIT TESTS --
 # Unit test validate_levels()
@@ -81,3 +89,4 @@ test_validate_levels()
 test_zero_level_missing()
 test_match_level_indices()
 test_valid_quantity(bom)
+
