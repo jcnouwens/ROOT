@@ -24,16 +24,16 @@ def validate_levels(levels):
 
 
 # Filter only the levels that ius greater or equal to the previous level
-def match_levels(levels):
-    match_bool = []
+def match_level_indices(levels):
+    match_indices = []
     for i in range(0, len(levels) - 1):
         if levels[i] < levels[i + 1]:
-            match_bool.append(False)
+            pass
         else:
-            match_bool.append(True)
-    match_bool.append(True)
+            match_indices.append(i)
+    match_indices.append(len(levels))
 
-    return match_bool
+    return match_indices
 
 
 # Unit test validate_levels()
@@ -51,11 +51,11 @@ def test_zero_level_missing():
 
 
 # Unit test match_levels()
-def test_match_levels():
+def test_match_level_indices():
     levels = [1, 2, 3, 4]
-    assert match_levels(levels) == [False, False, False, True]
+    assert match_level_indices(levels) == [4]
 
 
 test_validate_levels()
 test_zero_level_missing()
-test_match_levels()
+test_match_level_indices()
