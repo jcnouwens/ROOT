@@ -1,14 +1,15 @@
-# Check if level 0 (product) is missing
-def zero_level_missing(levels):
+# Check if level 0 (product) is present
+def zero_level_present(levels):
     if 0 in levels:
-        return False
-    else:
         return True
+    else:
+        return False
 
 
 # Check if each element (besides the first) is maximum 1 greater than the previous element.
 def validate_levels(levels):
     levels_valid = True
+    # print(levels)
     for i in range(1, len(levels)):  # Start range at 1 because the first element can never be higher than the previous
         if levels[i] - levels[i-1] > 1:
             levels_valid = False
@@ -48,18 +49,18 @@ def valid_unit(row):
         return False
 
 # -- UNIT TESTS --
+# Unit test zero_level_missing()
+def test_zero_level_present():
+    invalid_levels = [1, 2, 3, 4, 5]
+    valid_levels = [0, 1, 3, 3, 4]
+    assert zero_level_present(valid_levels) and not zero_level_present(invalid_levels)
+
+
 # Unit test validate_levels()
 def test_validate_levels():
     valid_levels = [1, 2, 3, 4, 5]
     invalid_levels = [1, 3, 3, 4, 5]
     assert validate_levels(valid_levels) and not validate_levels(invalid_levels)
-
-
-# Unit test validate_levels()
-def test_zero_level_missing():
-    valid_levels = [1, 2, 3, 4, 5]
-    invalid_levels = [0, 1, 3, 3, 4]
-    assert zero_level_missing(valid_levels) and not zero_level_missing(invalid_levels)
 
 
 # Unit test match_levels()
@@ -77,5 +78,5 @@ def test_valid_quantity(bom):
 # Execute all unit tests
 def execute_unit_tests():
     test_validate_levels()
-    test_zero_level_missing()
+    test_zero_level_present()
     test_match_level_indices()
