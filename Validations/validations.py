@@ -1,12 +1,12 @@
 import pandas as pd
 
-data = {"Level": [1, 2, 2, 3],
-        "Name": ["Seat", "PP (polypropyleen)", "Screws", "Stainless steel"],
-        "Quantity": [1, 2.4, 4, 0.1],
-        "Unit": ["Items", "kg", "Items", "kg"]}
-bom = pd.DataFrame(data=data)
-levels = bom["Level"].values
-quantity = bom["Quantity"].values
+# data = {"Level": [1, 2, 2, 3],
+#         "Name": ["Seat", "PP (polypropyleen)", "Screws", "Stainless steel"],
+#         "Quantity": [1, 2.4, 4, 0.1],
+#         "Unit": ["Items", "kg", "Items", "kg"]}
+# bom = pd.DataFrame(data=data)
+# levels = bom["Level"].values
+# quantity = bom["Quantity"].values
 
 
 # Check if level 0 (product) is missing
@@ -53,7 +53,7 @@ def valid_quantity(row):
 
 # Check if unit has valid value
 def valid_unit(row):
-    if row.Unit in ['Kg', 'Items', 'm2']:
+    if row.Unit in ['kg', 'Items', 'm2']:
         return True
     else:
         return False
@@ -88,5 +88,3 @@ def test_valid_quantity(bom):
 test_validate_levels()
 test_zero_level_missing()
 test_match_level_indices()
-test_valid_quantity(bom)
-
