@@ -1,7 +1,11 @@
 import pandas as pd
 
-bom = {'Level': [1, 2, 2, 3], 'Name': ['Seat', 'PP (polypropyleen)', 'Screws', 'Stainless steel']}
-df_bom = pd.DataFrame(data=bom)
+data = {"Level": [1, 2, 2, 3],
+        "Name": ["Seat", "PP (polypropyleen)", "Screws", "Stainless steel"],
+        "Quantity": [1, 2.4, 4, 0.1]}
+bom = pd.DataFrame(data=data)
+levels = bom["Level"].values
+quantity = bom["Quantity"].values
 
 
 # Check if level 0 (product) is missing
@@ -36,6 +40,17 @@ def match_level_indices(levels):
     return match_indices
 
 
+# Filter only the levels that ius greater or equal to the previous level
+def valid_quantity(row):
+    if isinstance(row.Quantity, int):
+        return True
+    elif isinstance(row.Quantity, float):
+        return True
+    else:
+        return False
+
+
+# -- UNIT TESTS --
 # Unit test validate_levels()
 def test_validate_levels():
     valid_levels = [1, 2, 3, 4, 5]
@@ -52,10 +67,17 @@ def test_zero_level_missing():
 
 # Unit test match_levels()
 def test_match_level_indices():
-    levels = [1, 2, 3, 4]
-    assert match_level_indices(levels) == [4]
+    level = [1, 2, 3, 4]
+    assert match_level_indices(level) == [4]
+
+
+# Unit test match_levels()
+def test_valid_quantity(bom):
+    row = bom.loc[0]  #TODO: samenstellen
+    assert valid_quantity(row)
 
 
 test_validate_levels()
 test_zero_level_missing()
 test_match_level_indices()
+test_valid_quantity(bom)
