@@ -47,6 +47,13 @@ def valid_unit(row):
         return False
 
 
+# Find the best match in LCIA
+def find_match(lcia, material, geo):
+    search = lcia[lcia['Reference Product Name'].str.contains(material)]
+    if geo in search['Geography'].values:
+        subset = search[search['Geography'] == geo]
+        print(subset)
+
 # -- UNIT TESTS --
 # Unit test zero_level_missing()
 def test_zero_level_present():
