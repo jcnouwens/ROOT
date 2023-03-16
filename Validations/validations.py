@@ -33,9 +33,7 @@ def match_level_indices(levels):
 
 # Check if quantity has valid data type
 def valid_quantity(row):
-    if isinstance(row.Quantity, int):
-        return True
-    elif isinstance(row.Quantity, float):
+    if isinstance(row.Quantity, (int, float)):
         return True
     else:
         return False

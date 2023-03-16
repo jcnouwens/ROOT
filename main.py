@@ -10,13 +10,14 @@ bom = pd.read_csv("BOM.csv")
 if zero_level_present(bom["Level"].tolist()):  # TODO: present or missing?
     raise Exception("Zero level missing")
 
-print(bom["Level"].values)
 if not validate_levels(bom["Level"].tolist()):
     raise Exception("Level sequence in BOM invalid")
 
+bom = bom.assign(Match=[False for i in range(len(bom))])
 for index, row in bom.iterrows():
-    if not valid_quantity(row):
-        print(row)
+    # match_bom = pd.DataFrame(columns=bom.columns)
+    if valid_quantity(row):
+        bom.at[index, 'Match'] = True
 
 # # Create DataFrame of the LCIA tab of .xlsx file
 # source_path = "LCIA.xlsx"
