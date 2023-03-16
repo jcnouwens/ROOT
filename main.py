@@ -7,17 +7,33 @@ execute_unit_tests()
 
 bom = pd.read_csv("BOM.csv")
 
-if zero_level_present(bom["Level"].tolist()):  # TODO: present or missing?
-    raise Exception("Zero level missing")
+if zero_level_present(bom["Level"].tolist()):
+    raise Exception("Zero level not excepted when uploading single-product BOM")
 
 if not validate_levels(bom["Level"].tolist()):
     raise Exception("Level sequence in BOM invalid")
 
-bom = bom.assign(Match=[False for i in range(len(bom))])
+# Add Match and Error column to BOM DataFrame
+bom = bom.assign(
+    Match=[False for x in range(len(bom))],
+    Error=[[] for y in range(len(bom))]
+)
+
+match_levels = match_level_indices(bom['Level'])
+
 for index, row in bom.iterrows():
-    # match_bom = pd.DataFrame(columns=bom.columns)
-    if valid_quantity(row):
+    if index in match_levels:       # Set Match to True according to match_level_indices() logic.
         bom.at[index, 'Match'] = True
+    if not valid_quantity(row):
+        bom.at[index, 'Match'] = False
+        bom.at[index, 'Error'].append('Quantity invalid')
+    if not valid_unit(row):
+        bom.at[index, 'Match'] = False
+        bom.at[index, 'Error'].append('Unit invalid')
+    else:
+        pass
+
+match_bom = bom[bom['Match']]
 
 # # Create DataFrame of the LCIA tab of .xlsx file
 # source_path = "LCIA.xlsx"

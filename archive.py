@@ -29,3 +29,9 @@ def match_levels(levels):
 def test_match_levels():
     levels = [1, 2, 3, 4]
     assert match_levels(levels) == [False, False, False, True]
+
+
+# Unit test match_levels()
+def test_valid_quantity(bom):
+    row = bom.loc[0]
+    assert valid_quantity(row)

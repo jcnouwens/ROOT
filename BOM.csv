@@ -1,5 +1,5 @@
-Level,name,Quantity,Unit
-1,Seat,1,Items
-2,PP (polypropyleen),2.4,kg
-2,Screws,4,Items
-3,Stainless steel,0.1,kg
+Level,Name,Quantity,Unit,Mass (kg),Name supplier,Location supplier
+1,Seat,1,Items,2.5,Peter Plastics,"Krakow, Poland"
+2,PP (polypropyleen),2.4,kg,2.4,,
+2,Screws,4,Items,0.1,Betty Builders's,"Cologne, Germany"
+3,Stainless steel,0.1,kg,0.1,,

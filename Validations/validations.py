@@ -18,7 +18,7 @@ def validate_levels(levels):
     return levels_valid
 
 
-# Filter only the levels that ius greater or equal to the previous level
+# Filter only the levels that are greater or equal to the previous level
 def match_level_indices(levels):
     match_indices = []
     for i in range(0, len(levels) - 1):
@@ -26,7 +26,7 @@ def match_level_indices(levels):
             pass
         else:
             match_indices.append(i)
-    match_indices.append(len(levels))
+    match_indices.append(len(levels)-1)
 
     return match_indices
 
@@ -46,6 +46,7 @@ def valid_unit(row):
     else:
         return False
 
+
 # -- UNIT TESTS --
 # Unit test zero_level_missing()
 def test_zero_level_present():
@@ -63,14 +64,8 @@ def test_validate_levels():
 
 # Unit test match_levels()
 def test_match_level_indices():
-    level = [1, 2, 3, 4]
-    assert match_level_indices(level) == [4]
-
-
-# Unit test match_levels()
-def test_valid_quantity(bom):
-    row = bom.loc[0]  #TODO: samenstellen
-    assert valid_quantity(row)
+    level = [1, 2, 3, 3]
+    assert match_level_indices(level) == [2, 3]
 
 
 # Execute all unit tests
