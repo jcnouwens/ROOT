@@ -53,6 +53,4 @@ try:
 except FileNotFoundError as e:
     raise ValueError(f"File not found.\n {e}")
 
-find_match(lcia, "stainless", 'CH')
-
-print('End')
+subset = find_match(lcia, "stainless steel", 'PL', 'RER')

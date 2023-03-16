@@ -1,5 +1,6 @@
 # Archive code
 archive.py
+.klad/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
