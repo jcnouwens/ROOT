@@ -13,10 +13,11 @@ if zero_level_present(bom["Level"].tolist()):
 if not validate_levels(bom["Level"].tolist()):
     raise Exception("Level sequence in BOM invalid")
 
-# Add Match and Error column to BOM DataFrame
+# Add Match, Error and Search column to BOM DataFrame
 bom = bom.assign(
     Match=[False for x in range(len(bom))],
-    Error=[[] for y in range(len(bom))]
+    Error=[[] for y in range(len(bom))],
+    Search=[bom['Name'][z] for z in range(len(bom))]
 )
 
 match_levels = match_level_indices(bom['Level'])
@@ -33,8 +34,15 @@ for index, row in bom.iterrows():
     else:
         pass
 
+# Filter only the rows that should be matches to the LCIA
 match_bom = bom[bom['Match']]
+search_terms = {
+    "PP (polypropyleen)": "polypropylene"
+}
+match_bom.replace({"Search": search_terms}, inplace=True)
 
+
+print("The end")
 # # Create DataFrame of the LCIA tab of .xlsx file
 # source_path = "LCIA.xlsx"
 # try:
